@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String id, name, gender;
+        double Chinese, Math, English;
+
+        id = input.next();
+        name = input.next();
+        gender = input.next();
+        Chinese = input.nextDouble();
+        Math = input.nextDouble();
+        English = input.nextDouble();
+        Student student = new Student(id, name, gender, Chinese,  Math, English);
+        student.calTotal();
+        student.calAverage();
+        student.output();
+    }
+}
+
+class Student {
+    String id;
+    String name;
+    String gender;
+    double Chinese;
+    double Math;
+    double English;
+    double Average;
+    double Total;
+
+    Student(String id, String name, String gender,
+            double Chinese, double Math, double English){
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.Chinese = Chinese;
+        this.Math = Math;
+        this.English = English;
+    }
+
+    void calTotal(){
+        Total = (Chinese +  Math + English);
+    }
+
+    void calAverage(){
+        Average = Total / 3;
+    }
+
+    void output() {
+        System.out.printf("%s %s %s %.2f %.2f %.2f %.2f %.2f\n",
+                        id, name, gender, Chinese,  Math, English, Average, Total);
+    }
+}
