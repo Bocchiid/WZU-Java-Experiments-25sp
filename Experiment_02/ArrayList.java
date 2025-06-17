@@ -1,38 +1,45 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        double loan;
-        String date;
-        String s;
-        String frameName;
-        double radius;
 
-        ArrayList<Object> list = new ArrayList<>();
+        ArrayList<Object> arrayList = new ArrayList<>();
 
-        loan = input.nextDouble();
-        Loan a = new Loan(loan);
-        list.add(a);
+        double loan1 = input.nextDouble();
+        Loan loan = new Loan(loan1);
 
-        date = input.next();
-        Date b =  new Date(date);
-        list.add(b);
+        String date1 = input.next();
+        Date date = new Date(date1);
 
-        s = input.next();
-        list.add(s);
+        String string = input.next();
 
-        frameName = input.next();
-        Frame c =  new Frame(frameName);
-        list.add(c);
+        String frameName1 = input.next();
+        Frame frame = new Frame(frameName1);
 
-        radius = input.nextDouble();
+        double radius = input.nextDouble();
         Circle circle = new Circle(radius);
-        list.add(circle);
 
-        for (int i = 0; i<list.size();i++) {
-            System.out.println(list.get(i).toString());
+        arrayList.add(loan);
+        arrayList.add(date);
+        arrayList.add(string);
+        arrayList.add(frame);
+        arrayList.add(circle);
+        /** 1.传统的for循环 */
+//        for (int i = 0; i < arrayList.size(); i++) {
+//            System.out.println(arrayList.get(i));
+//        }
+        /** 2.范围增强型for循环 */
+//        for (Object it : arrayList) {
+//            System.out.println(it);
+//        }
+        /** 3.迭代器循环 */
+        Iterator<Object> iterator = arrayList.iterator();
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
     }
 }
@@ -40,10 +47,11 @@ public class Main {
 class Loan {
     double loan;
 
-    Loan(double loan) {
+    public Loan(double loan) {
         this.loan = loan;
     }
 
+    @Override
     public String toString() {
         return String.format("Loan: %.2f", loan);
     }
@@ -52,34 +60,37 @@ class Loan {
 class Date {
     String date;
 
-    Date(String date) {
+    public Date(String date) {
         this.date = date;
     }
 
+    @Override
     public String toString() {
-        return String.format("Date: %s", date);
+        return "Date: " + date;
     }
 }
 
 class Frame {
-    String franName;
+    String frameName;
 
-    Frame(String franName) {
-        this.franName = franName;
+    public Frame(String frameName) {
+        this.frameName = frameName;
     }
 
+    @Override
     public String toString() {
-        return String.format("Frame: %s", franName);
+        return "Frame: " + frameName;
     }
 }
 
 class Circle {
-    double  radius;
+    double radius;
 
-    Circle(double radius) {
+    public Circle(double radius) {
         this.radius = radius;
     }
 
+    @Override
     public String toString() {
         return String.format("Circle: %.2f", radius);
     }
