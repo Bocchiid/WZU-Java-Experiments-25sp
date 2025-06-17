@@ -1,128 +1,176 @@
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int n;
-        double r, h;
-        double a, b, c;
+        Scanner in = new Scanner(System.in);
 
-        n = input.nextInt();
+        int t = in.nextInt();
 
-        for (int i = 0; i < n; i++) {
-            r = input.nextDouble();
-            h = input.nextDouble();
-            Cylinder obj0 = new Cylinder(r, h);
-            System.out.printf("%.2f %.2f\n", obj0.getArea(), obj0.getVolume());
+        for (int i = 0; i < t; i++) {
+            double radius, height;
 
-            r = input.nextDouble();
-            Sphere obj1 = new Sphere(r);
-            System.out.printf("%.2f %.2f\n", obj1.getArea(), obj1.getVolume());
+            radius = in.nextDouble();
+            height = in.nextDouble();
 
-            a = input.nextDouble();
-            Cube obj2 = new Cube(a);
-            System.out.printf("%.2f %.2f\n", obj2.getArea(), obj2.getVolume());
+            Cylinder cylinder = new Cylinder(radius, height);
+            System.out.printf("%.2f %.2f\n", cylinder.calArea(), cylinder.calVolume());
 
-            a = input.nextDouble();
-            b = input.nextDouble();
-            c = input.nextDouble();
-            Cuboid obj3 = new Cuboid(a, b, c);
-            System.out.printf("%.2f %.2f\n", obj3.getArea(), obj3.getVolume());
+            radius = in.nextDouble();
+
+            Sphere sphere = new Sphere(radius);
+            System.out.printf("%.2f %.2f\n", sphere.calArea(), sphere.calVolume());
+
+            double edge;
+
+            edge = in.nextDouble();
+
+            Cube cube = new Cube(edge);
+            System.out.printf("%.2f %.2f\n", cube.calArea(), cube.calVolume());
+
+            double length, width, newHeight;
+
+            length = in.nextDouble();
+            width = in.nextDouble();
+            newHeight = in.nextDouble();
+
+            Cuboid cuboid = new Cuboid(length, width, newHeight);
+            System.out.printf("%.2f %.2f\n", cuboid.calArea(), cuboid.calVolume());
         }
     }
 }
 
 abstract class Shape {
-    Shape() {
+    public Shape() {
 
     }
 
-    public abstract double getArea();
-    public abstract double getVolume();
+    public abstract double calArea();
+    public abstract double calVolume();
 }
 
 class Cylinder extends Shape {
-    double radius;
-    double height;
+    private double radius;
+    private double height;
 
-    Cylinder() {
-
-    }
-
-    Cylinder(double radius, double height) {
+    public Cylinder(double radius, double height) {
+        super();
         this.radius = radius;
         this.height = height;
     }
 
-    public double getArea() {
-        return 2.0 * 3.14 * radius * height + 2.0 * 3.14* radius * radius;
+    public double getRadius() {
+        return radius;
     }
 
-    public double getVolume() {
-        return 3.14 * radius * radius * height;
+    public double getHeight() {
+        return height;
+    }
+
+    @Override
+    public double calArea() {
+        double PI = 3.14;
+
+        double s = 2 * PI * getRadius() * getRadius() + 2 * PI * getRadius() * getHeight();
+
+        return s;
+    }
+
+    @Override
+    public double calVolume() {
+        double PI = 3.14;
+
+        double v = PI * getRadius() * getRadius() * getHeight();
+
+        return v;
     }
 }
 
 class Sphere extends Shape {
-    double radius;
+    private double radius;
 
-    Sphere() {
-
-    }
-
-    Sphere(double radius) {
+    public Sphere(double radius) {
+        super();
         this.radius = radius;
     }
 
-    public double getArea() {
-        return 4.0 * 3.14 * radius * radius;
+    public double getRadius() {
+        return radius;
     }
 
-    public double getVolume() {
-        return 4.0 / 3.0 * 3.14 * radius * radius * radius;
+    @Override
+    public double calArea() {
+        double PI = 3.14;
+
+        double s = 4 * PI * getRadius() * getRadius();
+
+        return s;
+    }
+
+    @Override
+    public double calVolume() {
+        double PI = 3.14;
+
+        double v = 4.0 / 3.0 * PI * getRadius() * getRadius() * getRadius();
+
+        return v;
     }
 }
 
 class Cube extends Shape {
-    double a;
+    private double edge;
 
-    Cube() {
-
+    public Cube(double edge) {
+        super();
+        this.edge = edge;
     }
 
-    Cube(double a) {
-        this.a = a;
+    public double getEdge() {
+        return edge;
     }
 
-    public double getArea() {
-        return 6.0 * a * a;
+    @Override
+    public double calArea() {
+        return 6 * getEdge() * getEdge();
     }
 
-    public double getVolume() {
-        return a * a * a;
+    @Override
+    public double calVolume() {
+        return getEdge() * getEdge() * getEdge();
     }
 }
 
 class Cuboid extends Shape {
-    double a;
-    double b;
-    double c;
+    private double length;
+    private double width;
+    private double height;
 
-    Cuboid() {
-
+    public Cuboid(double length, double width, double height) {
+        super();
+        this.length = length;
+        this.width = width;
+        this.height = height;
     }
 
-    Cuboid(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    public double getLength() {
+        return length;
     }
 
-    public double getArea() {
-        return 2.0 * a * b + 2.0 * a * c + 2.0 * b * c;
+    public double getWidth() {
+        return width;
     }
 
-    public double getVolume() {
-        return a * b * c;
+    public double getHeight() {
+        return height;
+    }
+
+    @Override
+    public double calArea() {
+        return 2 * getLength() * getWidth() + 2 * getLength() * getHeight() + 2 * getWidth() * getHeight();
+    }
+
+    @Override
+    public double calVolume() {
+        return getLength() * getWidth() * getHeight();
     }
 }
