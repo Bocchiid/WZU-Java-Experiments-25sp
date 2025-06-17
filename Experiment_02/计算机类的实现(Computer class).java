@@ -1,8 +1,5 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         Computer computer = new Computer();
         computer.run();
         computer.stop();
@@ -10,67 +7,67 @@ public class Main {
 }
 
 class Cpu {
-    Cpu() {
+    public Cpu() {
         System.out.println("Constructing a CPU");
     }
 
-    void run() {
+    public void run() {
         System.out.println("CPU is running");
     }
 
-    void stop() {
+    public void stop() {
         System.out.println("CPU is stopping");
     }
 }
 
 class Ram {
-    Ram() {
+    public Ram() {
         System.out.println("Constructing a RAM");
     }
 
-    void run() {
+    public void run() {
         System.out.println("RAM is running");
     }
 
-    void stop() {
+    public void stop() {
         System.out.println("RAM is stopping");
     }
 }
 
 class Cdrom {
-    Cdrom() {
+    public Cdrom() {
         System.out.println("Constructing a CDROM");
     }
 
-    void run() {
+    public void run() {
         System.out.println("CDROM is running");
     }
 
-    void stop() {
+    public void stop() {
         System.out.println("CDROM is stopping");
     }
 }
 
 class Computer {
-    Cpu  cpu;
+    Cpu cpu;
     Ram ram;
     Cdrom cdrom;
 
-    Computer() {
+    public Computer() {
         cpu = new Cpu();
         ram = new Ram();
         cdrom = new Cdrom();
         System.out.println("Constructing a COMPUTER");
     }
 
-    void run() {
+    public void run() {
         System.out.println("COMPUTER is running");
         cpu.run();
         ram.run();
         cdrom.run();
     }
 
-    void stop() {
+    public void stop() {
         cdrom.stop();
         ram.stop();
         cpu.stop();
