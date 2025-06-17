@@ -3,18 +3,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n;
-        double edge;
 
-        n = in.nextInt();
+        int t = in.nextInt();
 
-        for (int i = 1; i <= n; i++) {
-            edge = in.nextDouble();
-            Cube x = new Cube(edge);
-            x.calVolume();
-            x.calArea();
-            System.out.printf("obj%d ", i);
-            x.display();
+        for (int i = 1; i <= t; i++) {
+            double r = in.nextDouble();
+
+            Cube cube = new Cube(r);
+            cube.calVolume();
+            cube.calArea();
+
+            System.out.print("obj" + i + " ");
+            cube.display();
         }
     }
 }
@@ -23,20 +23,24 @@ class Cube {
     private double edge;
     private double volume;
     private double area;
+    /** Constructor */
+    public Cube() {
 
-    Cube(double edge) {
+    }
+    /** Overload */
+    public Cube(double edge) {
         this.edge = edge;
     }
-
-    void calVolume() {
+    /** Member Function */
+    public void calVolume() {
         volume = edge * edge * edge;
     }
 
-    void  calArea() {
-        area = edge * edge * 6;
+    public void calArea() {
+        area = 6 * edge * edge;
     }
 
-    void display() {
-        System.out.printf("Volume:%.2f; Area:%.2f\n",  volume, area);
+    public void display() {
+        System.out.printf("Volume:%.2f; Area:%.2f\n", volume, area);
     }
 }
