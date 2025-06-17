@@ -1,20 +1,21 @@
 class Cpu {
-    int rank;
-    int frequency;
-    double voltage;
+    public int rank;
+    public int frequency;
+    public double voltage;
 
-    Cpu(int rank, int frequency, double voltage) {
-        System.out.println("Constructing a CPU");
+    public Cpu(int rank, int frequency, double voltage) {
         this.rank = rank;
         this.frequency = frequency;
         this.voltage = voltage;
+
+        System.out.println("Constructing a CPU");
     }
 
-    void run() {
+    public void run() {
         System.out.println("CPU is running");
     }
 
-    void stop() {
+    public void stop() {
         System.out.println("CPU is stopping");
     }
 }
