@@ -3,49 +3,72 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int t;
-        double x, y, r;
+
+        int t = in.nextInt();
+
         Circle circle = new Circle();
         circle.output();
-        t = in.nextInt();
 
         for (int i = 0; i < t; i++) {
+            double x, y, radius;
+
             x = in.nextDouble();
             y = in.nextDouble();
-            r = in.nextDouble();
-            circle.setData(x, y, r);
+            radius = in.nextDouble();
+
+            circle = new Circle(x, y, radius);
             circle.output();
         }
     }
 }
 
 class Point {
-    double x;
-    double y;
+    private double x;
+    private double y;
 
-    Point() {
-        x = 0.0;
-        y = 0.0;
+    public Point() {
+        x = 0;
+        y = 0;
+    }
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }
 
 class Circle {
-    Point center;
-    double radius;
+    Point p;
+    private double radius;
 
-    Circle() {
-        center = new Point();
-        radius = 0.0;
+    public Circle() {
+        p = new Point();
+        radius = 0;
     }
 
-    void setData(double x, double y, double r) {
-        center.x = x;
-        center.y = y;
-        radius = r;
+    public Circle(double x, double y, double radius) {
+        p = new Point(x,y);
+        this.radius = radius;
     }
 
-    void output() {
-        System.out.printf("x=%.2f,y=%.2f\n",  center.x, center.y);
-        System.out.printf("radius=%.2f\n", radius);
+    public Point getP() {
+        return p;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void output() {
+        System.out.printf("x=%.2f,y=%.2f\n", getP().getX(), getP().getY());
+        System.out.printf("radius=%.2f\n", getRadius());
     }
 }
