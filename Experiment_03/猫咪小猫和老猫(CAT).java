@@ -1,5 +1,5 @@
-public class Main {
-    public static void main(String[] args) {
+public class Main{
+    public static void main(String[] args){
         Cat[] catfamily = new Cat[3];
 
         catfamily[0] = new OldCat("HuangLao");
@@ -19,12 +19,12 @@ public class Main {
 abstract class Cat {
     String name;
 
-    Cat() {
-
+    public Cat(String name) {
+        this.name = name;
     }
 
-    Cat(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public abstract void move();
@@ -33,67 +33,64 @@ abstract class Cat {
 }
 
 class YoungCat extends Cat {
-    YoungCat() {
-
-    }
-
-    YoungCat(String name) {
+    public YoungCat(String name) {
         super(name);
     }
 
+    @Override
     public void move() {
         System.out.println("I like jumping.");
     }
 
+    @Override
     public void sound() {
         System.out.println("mie mie!");
     }
 
+    @Override
     public void show() {
-        System.out.printf("I am %s,I am a young cat!\n", name);
+        System.out.printf("I am %s,I am a young cat!\n", getName());
     }
 }
 
 class AdultCat extends Cat {
-    AdultCat() {
-
-    }
-
-    AdultCat(String name) {
+    public AdultCat(String name) {
         super(name);
     }
 
+    @Override
     public void move() {
         System.out.println("I can move quickly.");
     }
 
+    @Override
     public void sound() {
         System.out.println("mie mie!");
     }
 
+    @Override
     public void show() {
-        System.out.printf("I am %s,I am a cat!\n", name);
+        System.out.printf("I am %s,I am a cat!\n", getName());
     }
 }
 
 class OldCat extends Cat {
-    OldCat() {
-
-    }
-
-    OldCat(String name) {
+    public OldCat(String name) {
         super(name);
     }
 
+    @Override
     public void move() {
         System.out.println("I move slowly.");
     }
 
+    @Override
     public void sound() {
         System.out.println("miem miem!");
     }
 
+    @Override
     public void show() {
-        System.out.printf("I am %s,I am a old cat!\n", name);
+        System.out.printf("I am %s,I am a old cat!\n", getName());
     }
 }
