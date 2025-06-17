@@ -3,14 +3,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int x, y, r;
+
+        int x, y, radius;
 
         x = in.nextInt();
         y = in.nextInt();
-        r = in.nextInt();
-        Circle circle = new Circle(x, y, r);
+        radius = in.nextInt();
+
+        Circle circle = new Circle(radius, x, y);
+
         circle.output();
-        System.out.printf("Diameter=%d\n", circle.calDiameter());
+        System.out.println("Diameter=" + circle.calDiameter());
         System.out.printf("Area=%.1f\n", circle.calArea());
         System.out.printf("Perimeter=%.1f\n", circle.calPerimeter());
     }
@@ -21,31 +24,51 @@ class Circle {
     private int x;
     private int y;
 
-    Circle() {
+    public Circle() {
         radius = 1;
         x = 0;
         y = 0;
     }
 
-    Circle(int x, int y, int r) {
-        this.radius = r;
+    public Circle(int radius, int x, int y) {
+        this.radius = radius;
         this.x = x;
         this.y = y;
     }
 
-    int calDiameter() {
-        return  2 * this.radius;
+    public int getRadius() {
+        return radius;
     }
 
-    double calArea() {
-        return 3.14 * this.radius * this.radius;
+    public int getX() {
+        return x;
     }
 
-    double calPerimeter() {
-        return 3.14 * this.calDiameter();
+    public int getY() {
+        return y;
     }
 
-    void output() {
+    public int calDiameter() {
+        return 2 * getRadius();
+    }
+
+    public double calArea() {
+        double PI = 3.14;
+
+        double s = PI * getRadius() * getRadius();
+
+        return s;
+    }
+
+    public double calPerimeter() {
+        double PI = 3.14;
+
+        double c = PI * calDiameter();
+
+        return c;
+    }
+
+    public void output() {
         System.out.printf("Center=(%d,%d) and Radius=%d\n", x, y, radius);
     }
 }
