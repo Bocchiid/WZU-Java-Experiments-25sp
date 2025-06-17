@@ -2,57 +2,60 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
+
         double r1, r2;
 
-        r1 = input.nextDouble();
-        r2 = input.nextDouble();
+        r1 = in.nextDouble();
+        r2 = in.nextDouble();
 
-        ComparableCircle c1 = new ComparableCircle(r1);
-        ComparableCircle c2 = new ComparableCircle(r2);
+        ComparableCircle circle1 = new ComparableCircle(r1);
+        ComparableCircle circle2 = new ComparableCircle(r2);
 
-        if (c1.compareTo(c2)) {
-            System.out.printf("The max circle's area is %.2f\n", c1.calArea());
+        double maxArea = 0;
+
+        if (circle1.compareTo(circle2) == 1) {
+            maxArea = circle1.calArea();
         } else {
-            System.out.printf("The max circle's area is %.2f\n", c2.calArea());
+            maxArea = circle2.calArea();
         }
+
+        System.out.printf("The max circle's area is %.2f\n", maxArea);
     }
 }
 
 interface Comparable {
-    public abstract boolean compareTo(ComparableCircle a);
+    public int compareTo(ComparableCircle that);
 }
 
 class Circle {
-    double radius;
+    private double radius;
 
-    Circle() {
-
-    }
-
-    Circle(double radius) {
+    public Circle(double radius) {
         this.radius = radius;
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
     public double calArea() {
-        return Math.PI * radius * radius;
+        return Math.PI * getRadius() * getRadius();
     }
 }
 
 class ComparableCircle extends Circle implements Comparable {
-    ComparableCircle() {
-
-    }
-
-    ComparableCircle(double radius) {
+    public ComparableCircle(double radius) {
         super(radius);
     }
 
-    public boolean compareTo(ComparableCircle a) {
-        if (this.calArea() > a.calArea()) {
-            return true;
+    public int compareTo(ComparableCircle that) {
+        if (this.getRadius() > that.getRadius()) {
+            return 1;
+        } else if (getRadius() == that.getRadius()) {
+            return 0;
         } else {
-            return false;
+            return -1;
         }
     }
 }
