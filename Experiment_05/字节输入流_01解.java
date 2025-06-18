@@ -35,6 +35,8 @@ public class Main {
 //            while ((line = dataInputStream.readLine()) != null) {
 //                System.out.println(line);
 //            }
+            /** 关闭输入流(好习惯) */
+            fileInputStream.close();
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
